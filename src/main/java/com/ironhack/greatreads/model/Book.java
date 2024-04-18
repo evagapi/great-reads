@@ -1,5 +1,6 @@
 package com.ironhack.greatreads.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -21,21 +22,25 @@ public class Book {
     private String isbn;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "genre_id")
+    @JsonIgnore
     private Genre genre;
+
     private String language;
     private String publisher;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "author_id")
+    @JsonIgnore
     private Author author;
 
-    public Book(String title, int numberOfPages, String isbn, Genre genre, String language, String publisher) {
+    public Book(String title, int numberOfPages, String isbn, Genre genre, String language, String publisher, Author author) {
         this.title = title;
         this.numberOfPages = numberOfPages;
         this.isbn = isbn;
         this.genre = genre;
         this.language = language;
         this.publisher = publisher;
+        this.author = author;
     }
 }

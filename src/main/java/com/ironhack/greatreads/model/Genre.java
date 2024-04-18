@@ -22,6 +22,7 @@ public class Genre {
     private String name;
 
     @OneToMany
+    @JoinColumn(name = "genre_id")
     @JsonIgnore
     private List<Book> books;
 

@@ -29,5 +29,6 @@ public class Author {
     public Author(String firstName, String secondName, List<Book> books) {
         this.firstName = firstName;
         this.secondName = secondName;
+        this.books = books;
     }
 }
