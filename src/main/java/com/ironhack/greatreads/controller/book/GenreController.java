@@ -14,15 +14,12 @@ public class GenreController {
     @Autowired
     GenreService genreService;
 
-    @Autowired
-    GenreRepository genreRepository;
-
     @GetMapping("/genres")
     @ResponseStatus(HttpStatus.OK)
     public List<Genre> getAllGenres() { return genreService.getAllGenres(); }
 
     @PostMapping("/genres")
     @ResponseStatus(HttpStatus.CREATED)
-    public Genre addGenre(@RequestBody Genre genre) { return genreRepository.save(genre); }
+    public Genre addGenre(@RequestBody Genre genre) { return genreService.addNewGenre(genre); }
 
 }

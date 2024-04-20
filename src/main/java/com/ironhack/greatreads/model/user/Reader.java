@@ -11,10 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Reader extends User {
 
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+
     @OneToOne(mappedBy = "reader")
     private Library library;
 

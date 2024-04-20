@@ -15,15 +15,12 @@ public class ReaderController {
     @Autowired
     ReaderService readerService;
 
-    @Autowired
-    ReaderRepository readerRepository;
-
     @GetMapping("/readers")
     @ResponseStatus(HttpStatus.OK)
     public List<Reader> getAllReaders() { return readerService.getAllReaders(); }
 
     @PostMapping("readers")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reader addReader(@RequestBody Reader reader) { return readerRepository.save(reader); }
+    public Reader addReader(@RequestBody Reader reader) { return readerService.addNewReader(reader); }
 
 }

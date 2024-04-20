@@ -10,11 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Librarian extends User {
 
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     public Librarian(String name, String userName, String email) {
         super(name, userName, email);
     }

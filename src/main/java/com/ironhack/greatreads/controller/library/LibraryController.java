@@ -15,14 +15,11 @@ public class LibraryController {
     @Autowired
     LibraryService libraryService;
 
-    @Autowired
-    LibraryRepository libraryRepository;
-
     @GetMapping("libraries")
     @ResponseStatus(HttpStatus.OK)
     public List<Library> getAllLibraries() { return libraryService.getAllLibraries(); }
 
     @PostMapping("libraries")
     @ResponseStatus(HttpStatus.CREATED)
-    public Library addLibrary(@RequestBody Library library) { return libraryRepository.save(library); }
+    public Library addLibrary(@RequestBody Library library) { return libraryService.addNewLibrary(library); }
 }

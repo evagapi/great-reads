@@ -15,15 +15,12 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @Autowired
-    BookRepository bookRepository;
-
     @GetMapping("/books")
     @ResponseStatus(HttpStatus.OK)
     public List<Book> getAllBooks() { return bookService.getAllBooks(); }
 
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
-    public Book addBook(@RequestBody Book book) { return bookRepository.save(book); }
+    public Book addBook(@RequestBody Book book) { return bookService.addNewBook(book); }
 
 }

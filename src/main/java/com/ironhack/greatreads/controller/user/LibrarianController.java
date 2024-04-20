@@ -1,7 +1,6 @@
 package com.ironhack.greatreads.controller.user;
 
 import com.ironhack.greatreads.model.user.Librarian;
-import com.ironhack.greatreads.repository.user.LibrarianRepository;
 import com.ironhack.greatreads.service.user.LibrarianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
