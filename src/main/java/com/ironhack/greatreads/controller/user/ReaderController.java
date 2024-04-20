@@ -1,8 +1,8 @@
-package com.ironhack.greatreads.controller;
+package com.ironhack.greatreads.controller.user;
 
 import com.ironhack.greatreads.model.user.Reader;
-import com.ironhack.greatreads.repository.ReaderRepository;
-import com.ironhack.greatreads.service.ReaderService;
+import com.ironhack.greatreads.repository.user.ReaderRepository;
+import com.ironhack.greatreads.service.user.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

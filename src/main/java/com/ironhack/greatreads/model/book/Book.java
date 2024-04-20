@@ -1,4 +1,4 @@
-package com.ironhack.greatreads.model;
+package com.ironhack.greatreads.model.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.greatreads.model.library.BookStatus;
@@ -35,7 +35,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    @JsonIgnore
     private Author author;
 
     @OneToMany(mappedBy = "book")

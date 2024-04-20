@@ -1,6 +1,5 @@
 package com.ironhack.greatreads.model.library;
 
-import com.ironhack.greatreads.model.Book;
 import com.ironhack.greatreads.model.user.Reader;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

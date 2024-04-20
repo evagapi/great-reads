@@ -1,7 +1,8 @@
 package com.ironhack.greatreads.model.library;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ironhack.greatreads.model.Book;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ironhack.greatreads.model.book.Book;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -21,11 +22,11 @@ public class BookStatus {
 
     @ManyToOne
     @JoinColumn(name = "library_id")
-    @JsonIgnore
+    @JsonIgnoreProperties("bookStatuses")
     private Library library;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties("bookStatuses")
     private Book book;
 
     @Enumerated(EnumType.STRING)

@@ -1,4 +1,4 @@
-package com.ironhack.greatreads.model;
+package com.ironhack.greatreads.model.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

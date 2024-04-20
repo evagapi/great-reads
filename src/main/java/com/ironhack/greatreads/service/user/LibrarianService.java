@@ -1,7 +1,7 @@
-package com.ironhack.greatreads.service;
+package com.ironhack.greatreads.service.user;
 
 import com.ironhack.greatreads.model.user.Librarian;
-import com.ironhack.greatreads.repository.LibrarianRepository;
+import com.ironhack.greatreads.repository.user.LibrarianRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

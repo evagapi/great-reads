@@ -1,8 +1,8 @@
-package com.ironhack.greatreads.controller;
+package com.ironhack.greatreads.controller.book;
 
-import com.ironhack.greatreads.model.Book;
-import com.ironhack.greatreads.repository.BookRepository;
-import com.ironhack.greatreads.service.BookService;
+import com.ironhack.greatreads.model.book.Book;
+import com.ironhack.greatreads.repository.book.BookRepository;
+import com.ironhack.greatreads.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

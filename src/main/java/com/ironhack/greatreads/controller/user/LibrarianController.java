@@ -1,8 +1,8 @@
-package com.ironhack.greatreads.controller;
+package com.ironhack.greatreads.controller.user;
 
 import com.ironhack.greatreads.model.user.Librarian;
-import com.ironhack.greatreads.repository.LibrarianRepository;
-import com.ironhack.greatreads.service.LibrarianService;
+import com.ironhack.greatreads.repository.user.LibrarianRepository;
+import com.ironhack.greatreads.service.user.LibrarianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +15,11 @@ public class LibrarianController {
     @Autowired
     LibrarianService librarianService;
 
-    @Autowired
-    LibrarianRepository librarianRepository;
-
     @GetMapping("/librarians")
     @ResponseStatus(HttpStatus.OK)
     public List<Librarian> getAllLibrarians() { return librarianService.getAllLibrarians(); }
 
     @PostMapping("/librarians")
     @ResponseStatus(HttpStatus.CREATED)
-    public Librarian addLibrarian(@RequestBody Librarian librarian) { return librarianRepository.save(librarian); }
+    public Librarian addLibrarian(@RequestBody Librarian librarian) { return librarianService.addNewLibrarian(librarian); }
 }
