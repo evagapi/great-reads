@@ -2,9 +2,11 @@ package com.ironhack.greatreads.model.user;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @MappedSuperclass
 @Data
+@NoArgsConstructor
 public class User {
 
     private String name;
