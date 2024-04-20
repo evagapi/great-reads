@@ -1,31 +1,34 @@
 package com.ironhack.greatreads.model.library;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.greatreads.model.Book;
-import com.ironhack.greatreads.model.user.Reader;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "libraries")
-public class Library {
+@Table(name = "book_statuses")
+public class BookStatus {
 
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "reader_id")
-    private Reader reader;
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    @JsonIgnore
+    private Library library;
 
-    @OneToMany(mappedBy = "library")
-    private List<BookStatus> bookStatuses = new ArrayList<>();
+    @ManyToOne
+    @JsonIgnore
+    private Book book;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
 }

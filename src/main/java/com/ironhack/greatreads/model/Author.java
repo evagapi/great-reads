@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Author {
 
     @OneToMany(mappedBy = "author")
     @JsonIgnore
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
     public Author(String firstName, String secondName, List<Book> books) {
         this.firstName = firstName;

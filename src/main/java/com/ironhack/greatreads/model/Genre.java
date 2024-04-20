@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,10 +25,6 @@ public class Genre {
     @OneToMany
     @JoinColumn(name = "genre_id")
     @JsonIgnore
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
-
-    public Genre(String name) {
-        this.name = name;
-    }
 }
