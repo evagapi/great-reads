@@ -1,6 +1,6 @@
-package com.ironhack.greatreads.repository;
+package com.ironhack.greatreads.repository.book;
 
-import com.ironhack.greatreads.model.Genre;
+import com.ironhack.greatreads.model.book.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

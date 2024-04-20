@@ -1,7 +1,7 @@
-package com.ironhack.greatreads.service;
+package com.ironhack.greatreads.service.book;
 
-import com.ironhack.greatreads.model.Genre;
-import com.ironhack.greatreads.repository.GenreRepository;
+import com.ironhack.greatreads.model.book.Genre;
+import com.ironhack.greatreads.repository.book.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,15 @@
-package com.ironhack.greatreads.model;
+package com.ironhack.greatreads.model.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ironhack.greatreads.model.library.BookStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -21,21 +26,18 @@ public class Book {
     private String isbn;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "genre_id")
+    @JsonIgnore
     private Genre genre;
+
     private String language;
     private String publisher;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "author_id")
     private Author author;
 
-    public Book(String title, int numberOfPages, String isbn, Genre genre, String language, String publisher) {
-        this.title = title;
-        this.numberOfPages = numberOfPages;
-        this.isbn = isbn;
-        this.genre = genre;
-        this.language = language;
-        this.publisher = publisher;
-    }
+    @OneToMany(mappedBy = "book")
+    private List<BookStatus> bookStatuses = new ArrayList<>();
+
 }
