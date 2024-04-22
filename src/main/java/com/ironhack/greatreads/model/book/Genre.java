@@ -27,4 +27,12 @@ public class Genre {
     @JsonIgnore
     private List<Book> books = new ArrayList<>();
 
+    public Genre(String name) {
+        this.name = name;
+    }
+
+    public Genre(String name, List<Book> books) {
+        this.name = name;
+        this.books = books;
+    }
 }

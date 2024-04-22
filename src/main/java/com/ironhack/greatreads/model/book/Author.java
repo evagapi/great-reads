@@ -21,15 +21,19 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
-    private String secondName;
+    private String lastName;
 
     @OneToMany(mappedBy = "author")
     @JsonIgnore
     private List<Book> books = new ArrayList<>();
 
-    public Author(String firstName, String secondName, List<Book> books) {
+    public Author(String firstName, String lastName) {
         this.firstName = firstName;
-        this.secondName = secondName;
+        this.lastName = lastName;
+    }
+    public Author(String firstName, String lastName, List<Book> books) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.books = books;
     }
 }
