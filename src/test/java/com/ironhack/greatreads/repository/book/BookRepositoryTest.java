@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,21 +56,21 @@ class BookRepositoryTest {
 
     @Test
     void findBookByTitleTest() {
-        Optional<Book> $book = bookRepository.findBookByTitle("El imperio final");
+        Optional<Book> $book = bookRepository.findByTitle("El imperio final");
         assertTrue($book.isPresent());
         assertEquals("El imperio final", $book.get().getTitle());
     }
 
     @Test
     void findBookByAuthorLastNameTest() {
-        Optional<Book> $book = bookRepository.findBookByAuthorLastName(author.getLastName());
+        Optional<Book> $book = bookRepository.findByAuthorLastName(author.getLastName());
         assertTrue($book.isPresent());
         assertEquals("Sanderson", $book.get().getAuthor().getLastName());
     }
 
     @Test
     void findBookByGenreTest() {
-        Optional<Book> $book = bookRepository.findBookByGenreName(genre.getName());
+        Optional<Book> $book = bookRepository.findByGenreName(genre.getName());
         assertTrue($book.isPresent());
         assertEquals("Sci-fi", $book.get().getGenre().getName());
     }
