@@ -1,6 +1,5 @@
 package com.ironhack.greatreads.repository.book;
 
-import com.ironhack.greatreads.model.book.Book;
 import com.ironhack.greatreads.model.book.Genre;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +44,7 @@ class GenreRepositoryTest {
 
     @Test
     void findGenreByNameTest() {
-        Optional<Genre> $genre = genreRepository.findGenreByName("Sci-fi");
+        Optional<Genre> $genre = genreRepository.findByName("Sci-fi");
         assertTrue($genre.isPresent());
         assertEquals("Sci-fi", $genre.get().getName());
     }

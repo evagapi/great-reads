@@ -1,10 +1,10 @@
 package com.ironhack.greatreads.model.user;
 
 import com.ironhack.greatreads.model.library.Library;
-import jakarta.persistence.*;
-import lombok.AccessLevel;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "readers")
