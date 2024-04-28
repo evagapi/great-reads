@@ -32,7 +32,10 @@ public class BookService {
         return bookRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"));
     }
 
-    public Book addNewBook(Book book) { return bookRepository.save(book); }
+    public Book addNewBook(Book book) {
+       updateBookRelationships(book, book);
+       return bookRepository.save(book);
+   }
 
     public Book updateBook(int id, Book book) {
         Book existingBook = bookRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"));
@@ -44,6 +47,14 @@ public class BookService {
         if (book.getPublisher() != null) existingBook.setPublisher(book.getPublisher());
 
         //relationships
+        updateBookRelationships(book, existingBook);
+
+        bookRepository.save(existingBook);
+
+        return existingBook;
+    }
+
+    private void updateBookRelationships(Book book, Book existingBook) {
         if (book.getGenre() != null) {
             int genreId = book.getGenre().getId();
             if (genreId > 0) {
@@ -66,9 +77,5 @@ public class BookService {
                 }
             }
         }
-
-        bookRepository.save(existingBook);
-
-        return existingBook;
     }
 }
