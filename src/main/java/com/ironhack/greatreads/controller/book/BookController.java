@@ -18,8 +18,18 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public List<Book> getAllBooks() { return bookService.getAllBooks(); }
 
+    @GetMapping("/books/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Book getBookById(@PathVariable int id) { return bookService.getBookById(id); }
+
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
     public Book addBook(@RequestBody Book book) { return bookService.addNewBook(book); }
+
+    @PatchMapping("/books/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Book updateBook(@PathVariable int id, @RequestBody Book incompleteBook) {
+        return bookService.updateBook(id, incompleteBook);
+    }
 
 }

@@ -27,7 +27,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "genre_id")
-    @JsonIgnore
     private Genre genre;
 
     private String language;
@@ -38,6 +37,6 @@ public class Book {
     private Author author;
 
     @OneToMany(mappedBy = "book")
+    @JsonIgnore
     private List<BookStatus> bookStatuses = new ArrayList<>();
-
 }
