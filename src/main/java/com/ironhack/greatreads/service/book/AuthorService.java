@@ -24,25 +24,15 @@ public class AuthorService {
 
     public Author addNewAuthor(Author author) { return authorRepository.save(author); }
 
-    public void updateAuthor(int id, Author author) {
+    public Author updateAuthor(int id, Author author) {
         Author existingAuthor = authorRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found"));
-        existingAuthor.setFirstName(author.getFirstName());
-        existingAuthor.setLastName(author.getLastName());
 
-        List<Book> newBooks = author.getBooks();
-
-        if (newBooks != null ) {
-            List<Book> existingBooks = existingAuthor.getBooks();
-
-            for (Book newBook : newBooks) {
-                if (!existingBooks.contains(newBook)) {
-                    existingBooks.add(newBook);
-                }
-            }
-            existingAuthor.setBooks(existingBooks);
-        }
+        if (author.getFirstName() != null) existingAuthor.setFirstName(author.getFirstName());
+        if (author.getLastName() != null) existingAuthor.setLastName(author.getLastName());
 
         authorRepository.save(existingAuthor);
+
+        return existingAuthor;
     }
 
     public void deleteAuthor(int id) {

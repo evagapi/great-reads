@@ -26,10 +26,10 @@ public class AuthorController {
     @ResponseStatus(HttpStatus.CREATED)
     public Author addAuthor(@RequestBody Author author) { return authorService.addNewAuthor(author); }
 
-    @PutMapping("/authors/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAuthor(@PathVariable int id, @RequestBody Author author) {
-        authorService.updateAuthor(id, author);
+    @PatchMapping("/authors/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Author updateAuthor(@PathVariable int id, @RequestBody Author author) {
+        return authorService.updateAuthor(id, author);
     }
 
     @DeleteMapping("/authors/{id}")
