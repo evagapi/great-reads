@@ -17,8 +17,24 @@ public class GenreController {
     @ResponseStatus(HttpStatus.OK)
     public List<Genre> getAllGenres() { return genreService.getAllGenres(); }
 
+    @GetMapping("/genres/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Genre getGenreById(@PathVariable int id) { return genreService.getGenreById(id); }
+
     @PostMapping("/genres")
     @ResponseStatus(HttpStatus.CREATED)
     public Genre addGenre(@RequestBody Genre genre) { return genreService.addNewGenre(genre); }
+
+    @PatchMapping("/genres/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Genre updateGenre(@PathVariable int id, @RequestBody Genre genre) {
+        return genreService.updateGenre(id, genre);
+    }
+
+    @DeleteMapping("/genres/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteGenre(@PathVariable int id) {
+        genreService.deleteGenre(id);
+    }
 
 }
