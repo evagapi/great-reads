@@ -21,4 +21,18 @@ public class LibrarianController {
     @PostMapping("/librarians")
     @ResponseStatus(HttpStatus.CREATED)
     public Librarian addLibrarian(@RequestBody Librarian librarian) { return librarianService.addNewLibrarian(librarian); }
+
+    @GetMapping("/librarians/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Librarian getLibrarianById(@PathVariable int id) { return librarianService.getLibrarianById(id); }
+
+    @PatchMapping("/librarians/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Librarian updateLibrarian(@PathVariable int id, @RequestBody Librarian librarian) {
+        return librarianService.updateLibrarian(id, librarian);
+    }
+
+    @DeleteMapping("/librarians/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteLibrarian(@PathVariable int id) { librarianService.deleteLibrarian(id); }
 }
