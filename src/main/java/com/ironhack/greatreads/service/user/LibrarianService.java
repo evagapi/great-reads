@@ -28,7 +28,6 @@ public class LibrarianService {
 
         if (librarian.getName() != null) existingLibrarian.setName(librarian.getName());
         if (librarian.getUserName() != null) existingLibrarian.setUserName(librarian.getUserName());
-        if (librarian.getUserName() != null) existingLibrarian.setUserName(librarian.getUserName());
         if (librarian.getEmail() != null) existingLibrarian.setEmail(librarian.getEmail());
 
         librarianRepository.save(existingLibrarian);
