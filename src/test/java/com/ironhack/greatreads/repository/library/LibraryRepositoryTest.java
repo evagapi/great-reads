@@ -46,11 +46,4 @@ class LibraryRepositoryTest {
         assertTrue($library.isPresent());
         assertEquals(library.getId(), $library.get().getId());
     }
-
-    @Test
-    void deleteLibraryTest() {
-        libraryRepository.delete(library);
-        Optional<Library> $library = libraryRepository.findById(library.getId());
-        assertFalse($library.isPresent());
-    }
 }

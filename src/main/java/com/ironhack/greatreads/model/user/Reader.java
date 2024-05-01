@@ -1,6 +1,7 @@
 package com.ironhack.greatreads.model.user;
 
 import com.ironhack.greatreads.model.library.Library;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Reader extends User {
 
 
-    @OneToOne(mappedBy = "reader")
+    @OneToOne(mappedBy = "reader", cascade = CascadeType.ALL, orphanRemoval = true)
     private Library library;
 
 
