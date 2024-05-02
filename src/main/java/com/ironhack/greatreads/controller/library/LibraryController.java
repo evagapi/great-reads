@@ -18,6 +18,10 @@ public class LibraryController {
     @ResponseStatus(HttpStatus.OK)
     public List<Library> getAllLibraries() { return libraryService.getAllLibraries(); }
 
+    @GetMapping("libraries/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Library getLibraryById(@PathVariable int id) { return libraryService.getLibraryById(id); }
+
     @PostMapping("libraries")
     @ResponseStatus(HttpStatus.CREATED)
     public Library addLibrary(@RequestBody Library library) { return libraryService.addNewLibrary(library); }
