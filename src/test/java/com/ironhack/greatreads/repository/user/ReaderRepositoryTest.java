@@ -1,6 +1,7 @@
 package com.ironhack.greatreads.repository.user;
 
 import com.ironhack.greatreads.model.library.Library;
+import com.ironhack.greatreads.model.user.User;
 import com.ironhack.greatreads.repository.library.LibraryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,57 +14,57 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class ReaderRepositoryTest {
+class UserRepositoryTest {
 
     @Autowired
-    ReaderRepository readerRepository;
+    UserRepository userRepository;
 
     @Autowired
     LibraryRepository libraryRepository;
 
-    Reader reader;
+    User user;
     Library library;
     @BeforeEach
     void setUp() {
-        reader = new Reader("Matilda Wormwood", "littlereadermatilda", "matilda.wormwood@example.com");
-        readerRepository.save(reader);
+        user = new User("Matilda Wormwood", "littleusermatilda", "matilda.wormwood@example.com");
+        userRepository.save(user);
 
         library = new Library();
-        library.setReader(reader);
+        library.setUser(user);
         libraryRepository.save(library);
     }
 
     @AfterEach
     void tearDown() {
         libraryRepository.deleteAll();
-        readerRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
     void findByIdTest() {
-        Optional<Reader> $reader = readerRepository.findById(reader.getId());
-        assertTrue($reader.isPresent());
-        assertEquals(reader.getId(), $reader.get().getId());
+        Optional<User> $user = userRepository.findById(user.getId());
+        assertTrue($user.isPresent());
+        assertEquals(user.getId(), $user.get().getId());
     }
 
     @Test
     void findByNameTest() {
-        Optional<Reader> $reader = readerRepository.findByName(reader.getName());
-        assertTrue($reader.isPresent());
-        assertEquals(reader.getName(), $reader.get().getName());
+        Optional<User> $user = userRepository.findByName(user.getName());
+        assertTrue($user.isPresent());
+        assertEquals(user.getName(), $user.get().getName());
     }
 
     @Test
     void findByUserNameTest() {
-        Optional<Reader> $reader = readerRepository.findByUserName(reader.getUserName());
-        assertTrue($reader.isPresent());
-        assertEquals(reader.getUserName(), $reader.get().getUserName());
+        Optional<User> $user = userRepository.findByUserName(user.getUserName());
+        assertTrue($user.isPresent());
+        assertEquals(user.getUserName(), $user.get().getUserName());
     }
 
     @Test
     void findByEmailTest() {
-        Optional<Reader> $reader = readerRepository.findByEmail(reader.getEmail());
-        assertTrue($reader.isPresent());
-        assertEquals(reader.getEmail(), $reader.get().getEmail());
+        Optional<User> $user = userRepository.findByEmail(user.getEmail());
+        assertTrue($user.isPresent());
+        assertEquals(user.getEmail(), $user.get().getEmail());
     }
 }

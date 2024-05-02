@@ -1,8 +1,8 @@
 package com.ironhack.greatreads.repository.library;
 
 import com.ironhack.greatreads.model.library.Library;
-import com.ironhack.greatreads.model.user.Reader;
-import com.ironhack.greatreads.repository.user.ReaderRepository;
+import com.ironhack.greatreads.model.user.User;
+import com.ironhack.greatreads.repository.user.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,17 +20,17 @@ class LibraryRepositoryTest {
     private LibraryRepository libraryRepository;
 
     @Autowired
-    private ReaderRepository readerRepository;
+    private UserRepository readerRepository;
 
     private Library library;
-    private Reader reader;
+    private User reader;
     @BeforeEach
     void setUp() {
-        reader = new Reader("Ada Lovelace", "adalovelace", "ada.lovelace@gmail.com");
+        reader = new User("Ada Lovelace", "adalovelace", "ada.lovelace@gmail.com");
         readerRepository.save(reader);
 
         library = new Library();
-        library.setReader(reader);
+        library.setUser(reader);
         libraryRepository.save(library);
     }
 
