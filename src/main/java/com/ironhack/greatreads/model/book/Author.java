@@ -2,6 +2,7 @@ package com.ironhack.greatreads.model.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,11 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotEmpty(message = "You must provide a first name")
     private String firstName;
+
+    @NotEmpty(message = "You must provide a second name")
     private String lastName;
 
     @OneToMany(mappedBy = "author")
