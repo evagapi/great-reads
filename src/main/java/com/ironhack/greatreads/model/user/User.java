@@ -1,16 +1,15 @@
 package com.ironhack.greatreads.model.user;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@MappedSuperclass
+import java.util.Collection;
+import java.util.ArrayList;
+
+import static jakarta.persistence.FetchType.EAGER;
+
+@Entity
 @Data
 @NoArgsConstructor
 public class User {
@@ -28,9 +27,23 @@ public class User {
     @NotEmpty(message = "You must provide an email")
     private String email;
 
-    public User(String name, String userName, String email) {
+    /**
+     * The password used to log in
+     */
+    @NotEmpty(message = "You must provide a password")
+    private String password;
+
+    /**
+     * The roles that the user has
+     */
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
+
+
+    public User(String name, String userName, String email, String password) {
         this.name = name;
         this.userName = userName;
         this.email = email;
+        this.password = password;
     }
 }

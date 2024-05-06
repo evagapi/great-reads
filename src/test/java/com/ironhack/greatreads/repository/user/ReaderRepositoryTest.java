@@ -1,7 +1,6 @@
 package com.ironhack.greatreads.repository.user;
 
 import com.ironhack.greatreads.model.library.Library;
-import com.ironhack.greatreads.model.user.Reader;
 import com.ironhack.greatreads.repository.library.LibraryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
