@@ -1,6 +1,6 @@
 package com.ironhack.greatreads.model.library;
 
-import com.ironhack.greatreads.model.user.Reader;
+import com.ironhack.greatreads.model.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class Library {
 
     @OneToOne
     @JoinColumn(name = "reader_id")
-    private Reader reader;
+    private User reader;
 
     @OneToMany(mappedBy = "library")
     private List<BookStatus> bookStatuses = new ArrayList<>();
