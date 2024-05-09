@@ -21,10 +21,6 @@ public class Library {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "reader_id")
-    private User reader;
-
-    @OneToMany(mappedBy = "library")
+    @OneToMany()
     private List<BookStatus> bookStatuses = new ArrayList<>();
 }

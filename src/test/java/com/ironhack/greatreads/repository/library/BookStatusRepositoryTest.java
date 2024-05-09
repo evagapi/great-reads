@@ -66,7 +66,6 @@ class BookStatusRepositoryTest {
         libraryRepository.save(library);
 
         bookStatus = new BookStatus();
-        bookStatus.setLibrary(library);
         bookStatus.setBook(book);
         bookStatus.setStatus(Status.WANT_TO_READ);
 
