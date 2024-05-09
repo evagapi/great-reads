@@ -52,7 +52,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Retrieve user with the given username
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUsername(username);
         // Check if user exists
         if (user == null) {
             log.error("User not found in the database");
@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             });
             // Return the user details, including the username, password, and authorities
-            return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), authorities);
+            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
         }
     }
 
@@ -103,7 +103,7 @@ public class UserService implements UserDetailsService {
         log.info("Adding role {} to user {}", roleName, username);
 
         // Retrieve the user and role objects from the repository
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUsername(username);
         Role role = roleRepository.findByName(roleName);
 
         // Add the role to the user's role collection
@@ -121,7 +121,7 @@ public class UserService implements UserDetailsService {
      */
     public User getUser(String username) {
         log.info("Fetching user {}", username);
-        return userRepository.findByUserName(username);
+        return userRepository.findByUsername(username);
     }
 
     /**

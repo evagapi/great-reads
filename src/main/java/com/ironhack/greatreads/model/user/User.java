@@ -12,6 +12,7 @@ import static jakarta.persistence.FetchType.EAGER;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "users")
 public class User {
     @Setter(AccessLevel.NONE)
     @Id
@@ -22,7 +23,7 @@ public class User {
     private String name;
 
     @NotEmpty(message = "You must provide a username")
-    private String userName;
+    private String username;
 
     @NotEmpty(message = "You must provide an email")
     private String email;
@@ -40,9 +41,9 @@ public class User {
     private Collection<Role> roles = new ArrayList<>();
 
 
-    public User(String name, String userName, String email, String password) {
+    public User(String name, String username, String email, String password) {
         this.name = name;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
