@@ -53,6 +53,8 @@ public class SecurityConfiguration {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles
         http.authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/v3/**").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
                 .requestMatchers(GET, "/books").permitAll()
                 .requestMatchers(POST, "/users").permitAll()
