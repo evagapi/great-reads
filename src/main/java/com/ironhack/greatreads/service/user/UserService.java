@@ -24,6 +24,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,13 +46,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsername(username);
+        Optional<User> $user = userRepository.findByUsername(username);
 
-        if (user == null) {
-            log.error("User not found in the database");
-            throw new UsernameNotFoundException("User not found in the database");
-        } else {
-            log.info("User found in the database: {}", username);
+        if ($user.isPresent()) {
+            User user = $user.get();
 
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             user.getRoles().forEach(role -> {
@@ -59,6 +57,9 @@ public class UserService implements UserDetailsService {
             });
 
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        } else {
+            log.error("User not found in the database");
+            throw new UsernameNotFoundException("User not found in the database");
         }
     }
 
@@ -77,17 +78,19 @@ public class UserService implements UserDetailsService {
     public void addRoleToUser(String username, String roleName) {
         log.info("Adding role {} to user {}", roleName, username);
 
-        User user = userRepository.findByUsername(username);
-        Role role = roleRepository.findByName(roleName);
+        Optional<User> $user = userRepository.findByUsername(username);
 
-        user.getRoles().add(role);
-
-        userRepository.save(user);
+        if ($user.isPresent()) {
+            User user = $user.get();
+            Role role = roleRepository.findByName(roleName);
+            user.getRoles().add(role);
+            userRepository.save(user);
+        }
     }
 
     public User getUser(String username) {
         log.info("Fetching user {}", username);
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
     public User getUserById(int id) {
@@ -130,6 +133,8 @@ public class UserService implements UserDetailsService {
 
     public User createUser(User user, String role) {
         //TODO: fail if username already exists
+//        if (!getUser(user.getUsername()).isPresent)
+
         User savedUser = saveUser(user);
         addRoleToUser(user.getUsername(), role);
         createLibraryForUser(user);

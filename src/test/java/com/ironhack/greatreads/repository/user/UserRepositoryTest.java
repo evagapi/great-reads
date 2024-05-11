@@ -55,8 +55,9 @@ class UserRepositoryTest {
 
     @Test
     void findByUsernameTest() {
-        User existingUser = userRepository.findByUsername(user.getUsername());
-        assertEquals(user.getUsername(),existingUser.getUsername());
+        Optional<User> $user = userRepository.findByUsername(user.getUsername());
+        assertTrue($user.isPresent());
+        assertEquals(user.getUsername(),$user.get().getUsername());
     }
 
     @Test
