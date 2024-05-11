@@ -116,6 +116,18 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
+    public User updateAuthenticatedUser(User user) {
+        User authenticatedUser = getAuthenticatedUser();
+
+        if (user.getName() != null) authenticatedUser.setName(user.getName());
+        if (user.getEmail() != null) authenticatedUser.setEmail(user.getEmail());
+        if (user.getPassword() != null) authenticatedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userRepository.save(authenticatedUser);
+
+        return authenticatedUser;
+    }
+
     public User createUser(User user, String role) {
         //TODO: fail if username already exists
         User savedUser = saveUser(user);
@@ -130,4 +142,5 @@ public class UserService implements UserDetailsService {
         user.setLibrary(library);
         userRepository.save(user);
     }
+
 }
