@@ -24,22 +24,20 @@ public class GreatReadsApplication {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
-//	@Bean
+	// @Bean
 	CommandLineRunner run(UserService userService) {
 		return args -> {
 			userService.saveRole(new Role(null, "ROLE_USER"));
 			userService.saveRole(new Role(null, "ROLE_LIBRARIAN"));
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 
-			userService.saveUser(new User("Matilda", "matilda", "matilda@greatreads.com", "brucebruce"));
-			userService.saveUser(new User( "Madame Pince", "mpince","madamepince@greatreads.com", "restrictedsection"));
-			userService.saveUser(new User("Eva", "eva","eva@greatreads.com", "admin"));
+			userService.createUser(new User("Matilda", "matilda", "matilda@greatreads.com", "brucebruce"), "ROLE_USER");
+			userService.createUser(new User( "Madame Pince", "mpince","madamepince@greatreads.com", "restrictedsection"), "ROLE_USER");
+			userService.createUser(new User("Eva", "eva","eva@greatreads.com", "admin"), "ROLE_USER");
 
-			userService.addRoleToUser("matilda", "ROLE_USER");
+
 			userService.addRoleToUser("eva", "ROLE_ADMIN");
-			userService.addRoleToUser("eva", "ROLE_USER");
 			userService.addRoleToUser("eva", "ROLE_LIBRARIAN");
-			userService.addRoleToUser("mpince", "ROLE_USER");
 			userService.addRoleToUser("mpince", "ROLE_LIBRARIAN");
 		};
 	}

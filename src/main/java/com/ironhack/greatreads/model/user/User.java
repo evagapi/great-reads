@@ -1,5 +1,7 @@
 package com.ironhack.greatreads.model.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ironhack.greatreads.model.library.Library;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
@@ -8,6 +10,7 @@ import java.util.Collection;
 import java.util.ArrayList;
 
 import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Data
@@ -31,6 +34,7 @@ public class User {
     /**
      * The password used to log in
      */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotEmpty(message = "You must provide a password")
     private String password;
 
@@ -40,6 +44,10 @@ public class User {
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "library_id")
+    @ManyToMany(fetch = LAZY)
+    private Library library;
 
     public User(String name, String username, String email, String password) {
         this.name = name;

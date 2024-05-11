@@ -30,7 +30,6 @@ class UserRepositoryTest {
         userRepository.save(user);
 
         library = new Library();
-        library.setReader(user);
         libraryRepository.save(library);
     }
 
