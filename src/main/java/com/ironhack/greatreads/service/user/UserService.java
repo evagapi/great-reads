@@ -88,9 +88,9 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public User getUser(String username) {
+    public User getUser(String username) throws Exception {
         log.info("Fetching user {}", username);
-        return userRepository.findByUsername(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return userRepository.findByUsername(username).orElseThrow(() -> new Exception("User not found"));
     }
 
     public User getUserById(int id) {
@@ -103,7 +103,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public User getAuthenticatedUser() {
+    public User getAuthenticatedUser() throws Exception {
         Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
         if (!authentication.isAuthenticated()) throw new AuthenticationCredentialsNotFoundException("Non authenticated user");
         Object principal = authentication.getPrincipal();
@@ -119,7 +119,7 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
-    public User updateAuthenticatedUser(User user) {
+    public User updateAuthenticatedUser(User user) throws Exception {
         User authenticatedUser = getAuthenticatedUser();
 
         if (user.getName() != null) authenticatedUser.setName(user.getName());

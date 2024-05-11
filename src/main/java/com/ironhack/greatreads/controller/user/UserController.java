@@ -5,6 +5,7 @@ import com.ironhack.greatreads.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,21 +31,25 @@ public class UserController {
 
     @GetMapping("/me")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<User> getCurrentUser() {
+    public ResponseEntity<?> getCurrentUser() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(userService.getAuthenticatedUser());
-        } catch (AuthenticationException auth) {
+        } catch (AuthenticationCredentialsNotFoundException auth) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 
-    @PatchMapping("/me/update")
+    @PatchMapping("/me")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<User> updateCurrentUser(@RequestBody User user) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(userService.updateAuthenticatedUser(user));
         } catch (AuthenticationException auth) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
         }
     }
 

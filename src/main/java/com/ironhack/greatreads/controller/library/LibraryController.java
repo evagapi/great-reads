@@ -25,7 +25,7 @@ public class LibraryController {
 
     @PostMapping("me/library")
     @ResponseStatus(HttpStatus.OK)
-    public void getLibraryById(@RequestBody BookStatusDTO bookStatusDTO) {
+    public void getLibraryById(@RequestBody BookStatusDTO bookStatusDTO) throws Exception {
         User user = userService.getAuthenticatedUser();
         libraryService.addBookStatusToLibraryFromUser(user, bookStatusDTO);
     }
