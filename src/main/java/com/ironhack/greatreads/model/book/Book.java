@@ -1,7 +1,7 @@
 package com.ironhack.greatreads.model.book;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ironhack.greatreads.model.library.BookStatus;
+import com.ironhack.greatreads.model.people.Author;
+import com.ironhack.greatreads.model.people.Translator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
@@ -9,9 +9,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -47,7 +44,8 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToMany(mappedBy = "book")
-    @JsonIgnore
-    private List<BookStatus> bookStatuses = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "translator_id")
+    private Translator translator;
+
 }
