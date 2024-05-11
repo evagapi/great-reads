@@ -38,6 +38,16 @@ public class UserController {
         }
     }
 
+    @PatchMapping("/me/update")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<User> updateCurrentUser(@RequestBody User user) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(userService.updateAuthenticatedUser(user));
+        } catch (AuthenticationException auth) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
+
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     public User addUser(@RequestBody User user) {

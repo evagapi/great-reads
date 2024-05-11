@@ -31,16 +31,10 @@ public class User {
     @NotEmpty(message = "You must provide an email")
     private String email;
 
-    /**
-     * The password used to log in
-     */
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotEmpty(message = "You must provide a password")
     private String password;
 
-    /**
-     * The roles that the user has
-     */
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
