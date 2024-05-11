@@ -50,7 +50,12 @@ public class UserController {
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public User addUser(@RequestBody User user) {
-        return userService.createUser(user, "ROLE_USER");
+    public ResponseEntity<?> addUser(@RequestBody User user) throws Exception {
+        try {
+            User newUSer = userService.createUser(user, "ROLE_USER");
+            return ResponseEntity.status(HttpStatus.CREATED).body(newUSer);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
+        }
     }
 }
