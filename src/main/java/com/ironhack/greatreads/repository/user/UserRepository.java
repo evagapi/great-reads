@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findById(int id);
 
-    User findByUsername(String username) throws UsernameNotFoundException;
+    Optional<User> findByUsername(String username) throws UsernameNotFoundException;
 
     Optional<User> findByName(String name);
 
