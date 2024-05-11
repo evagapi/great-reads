@@ -1,12 +1,12 @@
 package com.ironhack.greatreads.repository.library;
 
-import com.ironhack.greatreads.model.book.Author;
+import com.ironhack.greatreads.model.people.Author;
 import com.ironhack.greatreads.model.book.Book;
 import com.ironhack.greatreads.model.book.Genre;
 import com.ironhack.greatreads.model.library.BookStatus;
 import com.ironhack.greatreads.model.library.Library;
 import com.ironhack.greatreads.model.library.Status;
-import com.ironhack.greatreads.repository.book.AuthorRepository;
+import com.ironhack.greatreads.repository.people.AuthorRepository;
 import com.ironhack.greatreads.repository.book.BookRepository;
 import com.ironhack.greatreads.repository.book.GenreRepository;
 import org.junit.jupiter.api.AfterEach;

@@ -2,8 +2,8 @@ package com.ironhack.greatreads.controller.book;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ironhack.greatreads.model.book.Author;
-import com.ironhack.greatreads.repository.book.AuthorRepository;
+import com.ironhack.greatreads.model.people.Author;
+import com.ironhack.greatreads.repository.people.AuthorRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.ironhack.greatreads.model.book;
+package com.ironhack.greatreads.model.people;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -11,11 +11,10 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "authors")
+@MappedSuperclass
 @Data
 @NoArgsConstructor
-public class Author {
+public class Person {
 
     @Setter(AccessLevel.NONE)
     @Id
@@ -28,17 +27,8 @@ public class Author {
     @NotEmpty(message = "You must provide a second name")
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
-    @JsonIgnore
-    private List<Book> books = new ArrayList<>();
-
-    public Author(String firstName, String lastName) {
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-    public Author(String firstName, String lastName, List<Book> books) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.books = books;
     }
 }

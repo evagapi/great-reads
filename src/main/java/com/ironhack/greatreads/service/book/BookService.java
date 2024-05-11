@@ -1,11 +1,13 @@
 package com.ironhack.greatreads.service.book;
 
-import com.ironhack.greatreads.model.book.Author;
+import com.ironhack.greatreads.model.people.Author;
 import com.ironhack.greatreads.model.book.Book;
 import com.ironhack.greatreads.model.book.Genre;
-import com.ironhack.greatreads.repository.book.AuthorRepository;
+import com.ironhack.greatreads.model.people.Translator;
+import com.ironhack.greatreads.repository.people.AuthorRepository;
 import com.ironhack.greatreads.repository.book.BookRepository;
 import com.ironhack.greatreads.repository.book.GenreRepository;
+import com.ironhack.greatreads.repository.people.TranslatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class BookService {
 
     @Autowired
     AuthorRepository authorRepository;
+
+    @Autowired
+    TranslatorRepository translatorRepository;
 
    public List<Book> getAllBooks() { return bookRepository.findAll(); }
 
@@ -74,6 +79,18 @@ public class BookService {
                     existingBook.setAuthor(author.get());
                 } else {
                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Author not found");
+                }
+            }
+        }
+
+        if (book.getTranslator() != null) {
+            int translatorId = book.getTranslator().getId();
+            if (translatorId > 0) {
+                Optional<Translator> translator = translatorRepository.findById(translatorId);
+                if (translator.isPresent()){
+                    existingBook.setTranslator(translator.get());
+                } else {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Translator not found");
                 }
             }
         }
