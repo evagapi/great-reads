@@ -149,4 +149,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void deleteUser(int id) throws Exception {
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new Exception("User not found"));
+
+        userRepository.delete(existingUser);
+    }
 }
