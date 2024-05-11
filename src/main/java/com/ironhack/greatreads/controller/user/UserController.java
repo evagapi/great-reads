@@ -50,7 +50,7 @@ public class UserController {
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> addUser(@RequestBody User user) throws Exception {
+    public ResponseEntity<?> addUser(@RequestBody User user) {
         try {
             User newUSer = userService.createUser(user, "ROLE_USER");
             return ResponseEntity.status(HttpStatus.CREATED).body(newUSer);
@@ -58,4 +58,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
         }
     }
+
+    @DeleteMapping("/users/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> deleteUser(@PathVariable int id) {
+        try {
+            userService.deleteUser(id);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+        return null;
+    }
+
 }
