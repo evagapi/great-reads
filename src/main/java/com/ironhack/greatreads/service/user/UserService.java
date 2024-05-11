@@ -131,14 +131,15 @@ public class UserService implements UserDetailsService {
         return authenticatedUser;
     }
 
-    public User createUser(User user, String role) {
-        //TODO: fail if username already exists
-//        if (!getUser(user.getUsername()).isPresent)
-
-        User savedUser = saveUser(user);
-        addRoleToUser(user.getUsername(), role);
-        createLibraryForUser(user);
-        return savedUser;
+    public User createUser(User user, String role) throws Exception {
+       if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+           throw new Exception("Username already exists");
+       } else {
+           User savedUser = saveUser(user);
+           addRoleToUser(user.getUsername(), role);
+           createLibraryForUser(user);
+           return savedUser;
+       }
     }
 
     private void createLibraryForUser(User user) {
