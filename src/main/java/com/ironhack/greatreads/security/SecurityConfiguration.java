@@ -59,6 +59,7 @@ public class SecurityConfiguration {
                 .requestMatchers(GET, "/books").permitAll()
                 .requestMatchers(POST, "/users").permitAll()
 
+                .requestMatchers(POST, "/users/{id}/promote").hasAnyAuthority( "ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/users/{id}").hasAnyAuthority( "ROLE_ADMIN" )
                 .requestMatchers(POST, "/books").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(PATCH, "/books/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )

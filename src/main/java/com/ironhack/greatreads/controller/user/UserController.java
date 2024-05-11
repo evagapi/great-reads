@@ -1,5 +1,6 @@
 package com.ironhack.greatreads.controller.user;
 
+import com.ironhack.greatreads.controller.user.dto.RoleDTO;
 import com.ironhack.greatreads.model.user.User;
 import com.ironhack.greatreads.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public User getUserById(@PathVariable int id) {
         return userService.getUserById(id);
+    }
+
+    @PostMapping("/users/{id}/promote")
+    @ResponseStatus(HttpStatus.OK)
+    public void promoteUserToLibrarian(@PathVariable int id, @RequestBody RoleDTO role) {
+        userService.addRoleToUser(userService.getUsernameByUserId(id), role.getName());
     }
 
     @GetMapping("/me")

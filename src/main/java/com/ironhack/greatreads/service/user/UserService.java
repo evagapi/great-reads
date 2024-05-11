@@ -98,6 +98,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
+    public String getUsernameByUserId(int id) {
+        return getUserById(id).getUsername();
+    }
+
     public List<User> getUsers() {
         log.info("Fetching all users");
         return userRepository.findAll();
