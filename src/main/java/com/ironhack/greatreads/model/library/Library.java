@@ -21,6 +21,6 @@ public class Library {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     private List<BookStatus> bookStatuses = new ArrayList<>();
 }
