@@ -75,7 +75,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public void addRoleToUser(String username, String roleName) {
+    public void addRoleToUser(String username, String roleName) throws Exception {
         log.info("Adding role {} to user {}", roleName, username);
 
         Optional<User> $user = userRepository.findByUsername(username);
@@ -83,6 +83,7 @@ public class UserService implements UserDetailsService {
         if ($user.isPresent()) {
             User user = $user.get();
             Role role = roleRepository.findByName(roleName);
+            if (role == null) throw new Exception("Role doesn't exist in the database");
             user.getRoles().add(role);
             userRepository.save(user);
         }

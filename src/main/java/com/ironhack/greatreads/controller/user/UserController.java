@@ -31,13 +31,16 @@ public class UserController {
     }
 
     @PostMapping("/users/{id}/promote")
-    @ResponseStatus(HttpStatus.OK)
-    public void promoteUserToLibrarian(@PathVariable int id, @RequestBody RoleDTO role) {
-        userService.addRoleToUser(userService.getUsernameByUserId(id), role.getName());
+    public ResponseEntity<?> promoteUserToLibrarian(@PathVariable int id, @RequestBody RoleDTO role) {
+        try {
+            userService.addRoleToUser(userService.getUsernameByUserId(id), role.getName());
+            return ResponseEntity.status(HttpStatus.CREATED).body(userService.getUserById(id));
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
     }
 
     @GetMapping("/me")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> getCurrentUser() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(userService.getAuthenticatedUser());
