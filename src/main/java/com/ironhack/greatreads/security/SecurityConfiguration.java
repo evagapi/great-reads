@@ -57,18 +57,29 @@ public class SecurityConfiguration {
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
                 .requestMatchers(GET, "/books").permitAll()
-                .requestMatchers(POST, "/users").permitAll()
+                .requestMatchers(GET, "/books/{id}").permitAll()
                 .requestMatchers(GET, "/authors").permitAll()
                 .requestMatchers(GET, "/authors/{id}").permitAll()
+                .requestMatchers(GET, "/genres").permitAll()
+                .requestMatchers(GET, "/genres/{id}").permitAll()
+                .requestMatchers(GET, "/translators").permitAll()
+                .requestMatchers(GET, "/translators/{id}").permitAll()
+
+                .requestMatchers(POST, "/users").permitAll()
 
                 // Entities management
                 .requestMatchers(POST, "/books").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(PATCH, "/books/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(POST, "/authors").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
+                .requestMatchers(PATCH, "/authors/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(POST, "/translators").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(PATCH, "/translators/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
+                .requestMatchers(PATCH, "/genres/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 // Admin domain management
                 .requestMatchers(POST, "/genres").hasAnyAuthority( "ROLE_ADMIN" )
+                .requestMatchers(DELETE, "/genres/{id}").hasAnyAuthority("ROLE_ADMIN" )
+                .requestMatchers(DELETE, "/books/{id}").hasAnyAuthority("ROLE_ADMIN" )
+                .requestMatchers(DELETE, "/authors/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/translators/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 // Admin user management
                 .requestMatchers(GET, "/users").hasAnyAuthority( "ROLE_ADMIN")

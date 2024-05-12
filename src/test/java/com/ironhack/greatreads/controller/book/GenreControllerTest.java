@@ -19,6 +19,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,9 +40,9 @@ class GenreControllerTest {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
         genre1 = new Genre("Sci-Fi");
-        genre2 = new Genre("Fantasi");
+        genre2 = new Genre("Fantasy");
         genreRepository.saveAll(List.of(genre1, genre2));
     }
 
@@ -69,7 +71,7 @@ class GenreControllerTest {
         Genre fixture = new Genre("Comedy");
         String body = objectMapper.writeValueAsString(fixture);
 
-        MvcResult result = mockMvc.perform(post("/genres")
+        MvcResult result = mockMvc.perform(post("/genres").with(user("test").roles("ADMIN"))
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -90,7 +92,7 @@ class GenreControllerTest {
 
         String updatedGenreJson = objectMapper.writeValueAsString(updatedGenre);
 
-        MvcResult result = mockMvc.perform(patch("/genres/{id}", genre1.getId())
+        MvcResult result = mockMvc.perform(patch("/genres/{id}", genre1.getId()).with(user("test").roles("LIBRARIAN"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatedGenreJson))
                 .andExpect(status().isOk())
@@ -106,7 +108,7 @@ class GenreControllerTest {
 
     @Test
     void deleteGenreTest() throws Exception {
-        mockMvc.perform(delete("/genres/{id}", genre1.getId()))
+        mockMvc.perform(delete("/genres/{id}", genre1.getId()).with(user("test").roles("ADMIN")))
                 .andExpect(status().isNoContent());
 
         mockMvc.perform(get("/genres/{id}", genre1.getId()))
