@@ -107,7 +107,7 @@ class AuthorControllerTest {
 
         String updatedAuthorJson = objectMapper.writeValueAsString(updatedAuthor);
 
-        MvcResult result = mockMvc.perform(patch("/authors/{id}", author1.getId()).with(user("test").roles("ADMIN"))
+        MvcResult result = mockMvc.perform(patch("/authors/{id}", author1.getId()).with(user("test").roles("LIBRARIAN"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatedAuthorJson))
                 .andExpect(status().isOk())
