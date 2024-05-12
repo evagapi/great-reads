@@ -19,4 +19,8 @@ public class Translator extends Person {
     @OneToMany(mappedBy = "translator")
     @JsonIgnore
     private List<Book> translatedBooks = new ArrayList<>();
+
+    public Translator(String firstName, String lastName) {
+        super(firstName, lastName);
+    }
 }
