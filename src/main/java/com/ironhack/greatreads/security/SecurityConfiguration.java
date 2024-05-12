@@ -58,18 +58,23 @@ public class SecurityConfiguration {
                 .requestMatchers("/login/**").permitAll()
                 .requestMatchers(GET, "/books").permitAll()
                 .requestMatchers(POST, "/users").permitAll()
+                .requestMatchers(GET, "/authors").permitAll()
+                .requestMatchers(GET, "/authors/{id}").permitAll()
 
-                .requestMatchers(POST, "/users/{id}/promote").hasAnyAuthority( "ROLE_ADMIN" )
-                .requestMatchers(DELETE, "/users/{id}").hasAnyAuthority( "ROLE_ADMIN" )
+                // Entities management
                 .requestMatchers(POST, "/books").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(PATCH, "/books/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(POST, "/authors").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(POST, "/translators").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
                 .requestMatchers(PATCH, "/translators/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN" )
-                .requestMatchers(DELETE, "/translators/{id}").hasAnyAuthority("ROLE_ADMIN" )
+                // Admin domain management
                 .requestMatchers(POST, "/genres").hasAnyAuthority( "ROLE_ADMIN" )
-                .requestMatchers(GET, "/users").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN")
-                .requestMatchers(GET, "/users/{id}").hasAnyAuthority("ROLE_LIBRARIAN", "ROLE_ADMIN")
+                .requestMatchers(DELETE, "/translators/{id}").hasAnyAuthority("ROLE_ADMIN" )
+                // Admin user management
+                .requestMatchers(GET, "/users").hasAnyAuthority( "ROLE_ADMIN")
+                .requestMatchers(GET, "/users/{id}").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(DELETE, "/users/{id}").hasAnyAuthority( "ROLE_ADMIN" )
+                .requestMatchers(POST, "/users/{id}/promote").hasAnyAuthority( "ROLE_ADMIN" )
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);

@@ -19,6 +19,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,7 +40,7 @@ class AuthorControllerTest {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
         author1 = new Author("Brandon", "Sanderson");
         author2 = new Author("Roal", "Dahl");
         authorRepository.saveAll(List.of(author1, author2));
@@ -84,7 +86,7 @@ class AuthorControllerTest {
         Author fixture = new Author("Mariana", "Enriquez");
         String body = objectMapper.writeValueAsString(fixture);
 
-        MvcResult result = mockMvc.perform(post("/authors")
+        MvcResult result = mockMvc.perform(post("/authors").with(user("test").roles("LIBRARIAN"))
                     .content(body)
                     .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -105,7 +107,7 @@ class AuthorControllerTest {
 
         String updatedAuthorJson = objectMapper.writeValueAsString(updatedAuthor);
 
-        MvcResult result = mockMvc.perform(patch("/authors/{id}", author1.getId())
+        MvcResult result = mockMvc.perform(patch("/authors/{id}", author1.getId()).with(user("test").roles("ADMIN"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatedAuthorJson))
                 .andExpect(status().isOk())
@@ -121,7 +123,7 @@ class AuthorControllerTest {
 
     @Test
     void deleteAuthorTest() throws Exception {
-        mockMvc.perform(delete("/authors/{id}", author1.getId()))
+        mockMvc.perform(delete("/authors/{id}", author1.getId()).with(user("test").roles("ADMIN")))
                 .andExpect(status().isNoContent());
 
         mockMvc.perform(get("/authors/{id}", author1.getId()))
