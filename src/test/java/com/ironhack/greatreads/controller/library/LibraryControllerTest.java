@@ -6,6 +6,7 @@ import com.ironhack.greatreads.model.book.Book;
 import com.ironhack.greatreads.model.book.Genre;
 import com.ironhack.greatreads.model.library.Status;
 import com.ironhack.greatreads.model.people.Author;
+import com.ironhack.greatreads.model.user.Role;
 import com.ironhack.greatreads.model.user.User;
 import com.ironhack.greatreads.repository.book.BookRepository;
 import com.ironhack.greatreads.repository.book.GenreRepository;
@@ -84,6 +85,7 @@ class LibraryControllerTest {
 
         user1 = new User("Matilda Wormwood", "matilda", "mwormwood@example.com", "brucebruce");
         user2 = new User("Catherine Morland", "kattym", "catherine.morland@example.com", "udolpho123");
+        userService.saveRole(new Role(null, "ROLE_USER"));
         userService.createUser(user1, "ROLE_USER");
         userService.createUser(user2, "ROLE_USER");
     }

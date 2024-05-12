@@ -1,4 +1,4 @@
-package com.ironhack.greatreads.controller.book;
+package com.ironhack.greatreads.controller.user;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
