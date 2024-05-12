@@ -12,6 +12,7 @@ import com.ironhack.greatreads.repository.book.GenreRepository;
 import com.ironhack.greatreads.repository.people.AuthorRepository;
 import com.ironhack.greatreads.repository.user.UserRepository;
 import com.ironhack.greatreads.service.user.UserService;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@Transactional
 class LibraryControllerTest {
 
     @Autowired
@@ -88,6 +90,9 @@ class LibraryControllerTest {
 
     @AfterEach
     void tearDown() {
+        bookRepository.deleteAll();
+        genreRepository.deleteAll();
+        authorRepository.deleteAll();
         userRepository.deleteAll();
     }
 
