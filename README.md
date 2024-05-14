@@ -21,7 +21,7 @@
 
 ## Description
 
-Greatreads is the final project of the Ironhack Java Backend Bootcamp. It is a Java HTML API inspired by Goodreads, designed to provide a platform for users to discover 
+Greatreads is the final project of the Ironhack Java Backend Bootcamp. It is a Java API inspired by Goodreads, designed to provide a platform for users to discover 
 and manage their reading preferences. It offers a simplified version of Goodreads' features while maintaining some of the core functionalities. With Greatreads, users can register, 
 interact with books, and organize their reading lists effectively. 
 
@@ -107,7 +107,7 @@ classDiagram
 
 ```
 ## Entity Relationship Diagram
- ![img.png](src/main/java/com/ironhack/greatreads/utils/err-diagram.png)
+ ![err-diagram-v02.jpg](src%2Fmain%2Fjava%2Fcom%2Fironhack%2Fgreatreads%2Futils%2Ferr-diagram-v02.jpg)
 
 ## Setup
 
