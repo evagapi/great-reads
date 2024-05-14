@@ -51,6 +51,5 @@ public class LibraryService {
             }
             libraryRepository.save(library);
         }
-       // TODO: fail if book doesn't exist
     }
 }
