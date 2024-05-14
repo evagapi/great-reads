@@ -1,12 +1,12 @@
 package com.ironhack.greatreads.service.book;
 
-import com.ironhack.greatreads.model.people.Author;
 import com.ironhack.greatreads.model.book.Book;
 import com.ironhack.greatreads.model.book.Genre;
+import com.ironhack.greatreads.model.people.Author;
 import com.ironhack.greatreads.model.people.Translator;
-import com.ironhack.greatreads.repository.people.AuthorRepository;
 import com.ironhack.greatreads.repository.book.BookRepository;
 import com.ironhack.greatreads.repository.book.GenreRepository;
+import com.ironhack.greatreads.repository.people.AuthorRepository;
 import com.ironhack.greatreads.repository.people.TranslatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

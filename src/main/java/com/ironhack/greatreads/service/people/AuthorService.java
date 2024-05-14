@@ -1,7 +1,7 @@
 package com.ironhack.greatreads.service.people;
 
-import com.ironhack.greatreads.model.people.Author;
 import com.ironhack.greatreads.model.book.Book;
+import com.ironhack.greatreads.model.people.Author;
 import com.ironhack.greatreads.repository.people.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,8 @@
 package com.ironhack.greatreads.service.user;
 
 import com.ironhack.greatreads.model.library.Library;
-import com.ironhack.greatreads.model.user.User;
 import com.ironhack.greatreads.model.user.Role;
+import com.ironhack.greatreads.model.user.User;
 import com.ironhack.greatreads.repository.library.LibraryRepository;
 import com.ironhack.greatreads.repository.user.RoleRepository;
 import com.ironhack.greatreads.repository.user.UserRepository;
