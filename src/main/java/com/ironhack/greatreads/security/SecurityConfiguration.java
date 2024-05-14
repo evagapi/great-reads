@@ -78,7 +78,6 @@ public class SecurityConfiguration {
                 // Admin domain management
                 .requestMatchers(POST, "/genres").hasAnyAuthority( "ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/genres/{id}").hasAnyAuthority("ROLE_ADMIN" )
-                .requestMatchers(DELETE, "/books/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/authors/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/translators/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 // Admin user management
