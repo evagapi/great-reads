@@ -2,12 +2,11 @@ package com.ironhack.greatreads.model.people;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.greatreads.model.book.Book;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AccessLevel;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;

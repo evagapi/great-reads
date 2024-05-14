@@ -3,7 +3,10 @@ package com.ironhack.greatreads.model.library;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ironhack.greatreads.model.book.Book;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Data

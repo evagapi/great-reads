@@ -24,11 +24,9 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
-    // UserDetailsService is an interface provided by Spring Security that defines a way to retrieve user information
     @Autowired
     private UserDetailsService userDetailsService;
 
-    // Autowired instance of the AuthenticationManagerBuilder
     @Autowired
     private AuthenticationManagerBuilder authManagerBuilder;
     @Bean
@@ -78,7 +76,6 @@ public class SecurityConfiguration {
                 // Admin domain management
                 .requestMatchers(POST, "/genres").hasAnyAuthority( "ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/genres/{id}").hasAnyAuthority("ROLE_ADMIN" )
-                .requestMatchers(DELETE, "/books/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/authors/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 .requestMatchers(DELETE, "/translators/{id}").hasAnyAuthority("ROLE_ADMIN" )
                 // Admin user management

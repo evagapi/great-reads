@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ironhack.greatreads.model.user.Role;
 import com.ironhack.greatreads.model.user.User;
-import com.ironhack.greatreads.repository.user.RoleRepository;
 import com.ironhack.greatreads.repository.user.UserRepository;
 import com.ironhack.greatreads.service.user.UserService;
 import jakarta.transaction.Transactional;
